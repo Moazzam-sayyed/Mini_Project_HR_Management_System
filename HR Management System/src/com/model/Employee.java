@@ -1,61 +1,99 @@
 package com.model;
 
 public class Employee {
-private int empid;
-private String name;
-private String email;
-private long mobile;
-private int deptid;
-private int roleid;
-public Employee(int empid, String name, String email, long mobile, int deptid, int roleid) {
-	super();
-	this.empid = empid;
-	this.name = name;
-	this.email = email;
-	this.mobile = mobile;
-	this.deptid = deptid;
-	this.roleid = roleid;
-}
-public int getEmpid() {
-	return empid;
-}
-public void setEmpid(int empid) {
-	this.empid = empid;
-}
-public String getName() {
-	return name;
-}
-public void setName(String name) {
-	this.name = name;
-}
-public String getEmail() {
-	return email;
-}
-public void setEmail(String email) {
-	this.email = email;
-}
-public long getMobile() {
-	return mobile;
-}
-public void setMobile(long mobile) {
-	this.mobile = mobile;
-}
-public int getDeptid() {
-	return deptid;
-}
-public void setDeptid(int deptid) {
-	this.deptid = deptid;
-}
-public int getRoleid() {
-	return roleid;
-}
-public void setRoleid(int roleid) {
-	this.roleid = roleid;
-}
-@Override
-public String toString() {
-	return "Employee [empid=" + empid + ", name=" + name + ", email=" + email + ", mobile=" + mobile + ", deptid="
-			+ deptid + ", roleid=" + roleid + "]";
-}
+	private int employeeId;
+	private String employeeName;
+	private String empAdress;
+	private String email;
+	private int mobile;
+	private int deprtmentId;
+	private int roleId;
+	
+	public Employee()
+	{
+		
+	}
+	//parameterized constructor
+	public Employee(int employeeId, String employeeName, String empAdress, String email, int mobile, int deprtmentId,
+			int roleId) {
+		super();
+		this.employeeId = employeeId;
+		this.employeeName = employeeName;
+		this.empAdress = empAdress;
+		this.email = email;
+		this.mobile = mobile;
+		this.deprtmentId = deprtmentId;
+		this.roleId = roleId;
+	}
 
+	
+	//Geter Seter methods
+	public int getEmployeeId() {
+		return employeeId;
+	}
+
+	public void setEmployeeId(int employeeId) {
+		this.employeeId = employeeId;
+	}
+
+	public String getEmployeeName() {
+		return employeeName;
+	}
+
+	public void setEmployeeName(String employeeName) {
+		this.employeeName = employeeName;
+	}
+
+	public String getEmpAdress() {
+		return empAdress;
+	}
+
+	public void setEmpAdress(String empAdress) {
+		this.empAdress = empAdress;
+	}
+
+	public String getEmail() {
+		return email;
+	}
+
+	public void setEmail(String email) {
+		this.email = email;
+	}
+
+	public int getMobile() {
+		return mobile;
+	}
+
+	public void setMobile(int mobile) {
+		this.mobile = mobile;
+	}
+
+	public int getDeprtmentId() {
+		return deprtmentId;
+	}
+
+	public void setDeprtmentId(int deprtmentId) {
+		this.deprtmentId = deprtmentId;
+	}
+
+	public int getRoleId() {
+		return roleId;
+	}
+
+	public void setRoleId(int roleId) {
+		this.roleId = roleId;
+	}
+
+
+	@Override
+	public String toString() {
+		return "Employee [employeeId=" + employeeId + ", employeeName=" + employeeName + ", empAdress=" + empAdress
+				+ ", email=" + email + ", mobile=" + mobile + ", deprtmentId=" + deprtmentId + ", roleId=" + roleId
+				+ "]";
+	}
+	 
+
+	
+
+	
 }

@@ -1,28 +1,34 @@
 package com.model;
 
 public class Department {
-private int deptid;
-private String deptname;
-public Department() {
-	// TODO Auto-generated constructor stub
-}
-public Department(int deptid, String deptname) {
-	super();
-	this.deptid = deptid;
-	this.deptname = deptname;
-}
-public int getDeptid() {
-	return deptid;
-}
-public void setDeptid(int deptid) {
-	this.deptid = deptid;
-}
-public String getDeptname() {
-	return deptname;
-}
-public void setDeptname(String deptname) {
-	this.deptname = deptname;
-}
+	private int departmentId;
+	private String departmentName;
 
+	public Department(int departmentId, String departmentName) {
+		super();
+		this.departmentId = departmentId;
+		this.departmentName = departmentName;
 
+	}
+
+	public int getDepartmentId() {
+		return departmentId;
+	}
+
+	public void setDepartmentId(int departmentId) {
+		this.departmentId = departmentId;
+	}
+
+	public String getDepartmentName() {
+		return departmentName;
+	}
+
+	public void setDepartmentName(String departmentName) {
+		this.departmentName = departmentName;
+	}
+
+	@Override
+	public String toString() {
+		return "Department [departmentId=" + departmentId + ", departmentName=" + departmentName + "]";
+	}
 }

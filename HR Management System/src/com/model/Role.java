@@ -4,11 +4,14 @@ public class Role {
 	
 	private int rolid;
 	private String roleNmae;
+	
+	
 	public Role(int rolid, String roleNmae) {
 		super();
 		this.rolid = rolid;
 		this.roleNmae = roleNmae;
 	}
+	
 	public int getRolid() {
 		return rolid;
 	}
