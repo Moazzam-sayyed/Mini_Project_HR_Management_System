@@ -135,8 +135,11 @@ public class EmployeeDaoImplementation implements EmployeeDao{
 		try(Connection con=ConnectionFactory.getConnection();
 				Statement st = con.createStatement())
 		{
-			ResultSet rs = st.executeQuery("select ename count(*) from employee e inner join department d on e.department_id=d.department_id groupby e.");
+			ResultSet rs = st.executeQuery("select d.department_name ,count(*) from department d inner join employee e on e.department_id = d.department_id group by department_name");
 			
+			while(rs.next()) {
+				reportMap.put(rs.getString(1),rs.getInt(2));
+			}
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
