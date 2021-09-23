@@ -1,33 +1,47 @@
 package com.dao;
-import com.model.*;
+import com.model.User;
 import com.configuration.*;
 import java.sql.Connection;
+
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-
-import com.configuration.ConnectionFactory;
-
-
-public class UserDaoImplementation implements UserDao{
+import java.util.Scanner;
+public class UserAuthentication{
+	
 	public boolean authentication()
 	{
+		 User user = new User();
+		Scanner sc = new Scanner(System.in);
 		try (Connection con = ConnectionFactory.getConnection();
 				PreparedStatement pst = con.prepareStatement("select * from user"))
 		{
 		 ResultSet rs= pst.executeQuery(); 
 		 while(rs.next())
 		 {
-			 User user = new User();
 			 user.setUsername(rs.getString(2));
 			 user.setPassword(rs.getString(3));
+
 		 }
-		 return true;
+		 	
+			 System.out.println("Enter User Name");
+			 String s1 = sc.next();
+			 System.out.println("Enter Password");
+			 String s2 = sc.next();
+			 if(s1.equals(user.getUsername()) && s2.equals(user.getPassword()))
+			 {
+				 return true;
+			 }
+			 else
+			 {
+				 return false;
+			 }
+			 
 		}
 		catch (SQLException e) {
 		// TODO: handle exception
 	}
 		return false;
 	}
-
+	
 }

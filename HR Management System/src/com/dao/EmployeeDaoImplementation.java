@@ -14,7 +14,22 @@ import java.util.List;
 import java.util.Map;
 public class EmployeeDaoImplementation implements EmployeeDao{
 
+	
+	
+	@Override
+	public boolean NameValidation(String name) {
+		
+		    if(name == null || name.equals(""))
+		        return false;
+
+		    if(!name.matches("[a-zA-Z]*"))
+		        return false;
+
+		    return true;
+		}
+	
 	//Add Employee detail on database through DAO Implementation
+	
 	@Override
 	public boolean addEmployee(Employee employee) {				
 		try(Connection con=ConnectionFactory.getConnection();
@@ -102,7 +117,7 @@ public class EmployeeDaoImplementation implements EmployeeDao{
 		return employeeList;
 	}
 	@Override
-	public List<Employee> searchEmployee(int searchId) {
+	public List<Employee> searchEmployee(int searchId) {			//search
 			ArrayList<Employee> searchList = new ArrayList<>();
 				try(Connection con =ConnectionFactory.getConnection();
 					PreparedStatement pst = con.prepareStatement("select * from employee where department_id=?"))
@@ -120,13 +135,15 @@ public class EmployeeDaoImplementation implements EmployeeDao{
 					employee.setRoleId(rs.getInt(6));
 					employee.setEmail(rs.getString(7));
 					searchList.add(employee);
-					return searchList;
+					
 				}
+				return searchList;
 			}
+				
 			catch(SQLException e) {
 				e.printStackTrace();
 			}
-			return null;
+			return searchList;
 		}
 
 	@Override
@@ -144,6 +161,7 @@ public class EmployeeDaoImplementation implements EmployeeDao{
 			e.printStackTrace();
 		}
 		return reportMap;
-	}
+	}	
+	
 	}
 
