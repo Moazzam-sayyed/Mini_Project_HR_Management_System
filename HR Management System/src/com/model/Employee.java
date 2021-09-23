@@ -5,7 +5,7 @@ public class Employee {
 	private String employeeName;
 	private String empAdress;
 	private String email;
-	private int mobile;
+	private long mobile;
 	private int deprtmentId;
 	private int roleId;
 	
@@ -14,7 +14,7 @@ public class Employee {
 		
 	}
 	//parameterized constructor
-	public Employee(int employeeId, String employeeName, String empAdress, String email, int mobile, int deprtmentId,
+	public Employee(int employeeId, String employeeName, String empAdress, String email, long mobile, int deprtmentId,
 			int roleId) {
 		super();
 		this.employeeId = employeeId;
@@ -60,11 +60,11 @@ public class Employee {
 		this.email = email;
 	}
 
-	public int getMobile() {
+	public long getMobile() {
 		return mobile;
 	}
 
-	public void setMobile(int mobile) {
+	public void setMobile(long mobile) {
 		this.mobile = mobile;
 	}
 
@@ -91,9 +91,6 @@ public class Employee {
 				+ ", email=" + email + ", mobile=" + mobile + ", deprtmentId=" + deprtmentId + ", roleId=" + roleId
 				+ "]";
 	}
-	 
-
-	
 
 	
 }

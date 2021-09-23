@@ -5,9 +5,13 @@ import com.configuration.*;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Statement;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 public class EmployeeDaoImplementation implements EmployeeDao{
 
 	//Add Employee detail on database through DAO Implementation
@@ -19,10 +23,10 @@ public class EmployeeDaoImplementation implements EmployeeDao{
 			pst.setInt(1,employee.getEmployeeId());
 			pst.setString(2,employee.getEmployeeName());
 			pst.setString(3,employee.getEmpAdress());
-			pst.setInt(4,employee.getMobile());
+			pst.setLong(4,employee.getMobile());
 			pst.setInt(5, employee.getDeprtmentId());
 			pst.setInt(6,employee.getRoleId());
-			pst.setInt(7, employee.getRoleId());
+			pst.setString(7, employee.getEmail());
 			pst.executeUpdate();
 			return true;
 			
@@ -41,7 +45,7 @@ public class EmployeeDaoImplementation implements EmployeeDao{
 
 			pst.setString(1, updateEmployee.getEmployeeName());
 			pst.setString(2,updateEmployee.getEmpAdress());
-			pst.setInt(3,updateEmployee.getMobile());
+			pst.setLong(3,updateEmployee.getMobile());
 			pst.setInt(4, updateEmployee.getDeprtmentId());
 			pst.setInt(5,updateEmployee.getRoleId());
 			pst.setString(6, updateEmployee.getEmail());
@@ -70,17 +74,73 @@ public class EmployeeDaoImplementation implements EmployeeDao{
 		return false;
 	}
 
+	//To Get all Table data
 	@Override
 	public List<Employee> getAllEmployee() {
+		ArrayList<Employee> employeeList = new ArrayList<>();
 		try(Connection con = ConnectionFactory.getConnection();
-				PreparedStatement pst = con.prepareStatement("Select * from employee"))
+				PreparedStatement pst = con.prepareStatement("select * from employee"))
 		{
-			ArrayList<Employee> EmployeeList = new ArrayList<>();
+			
+			ResultSet rs= pst.executeQuery();
+			while(rs.next())
+			{
+				Employee employee = new Employee();
+				employee.setEmployeeId(rs.getInt(1));
+				employee.setEmployeeName(rs.getString(2));
+				employee.setEmpAdress(rs.getString(3));
+				employee.setMobile(rs.getLong(4));
+				employee.setDeprtmentId(rs.getInt(5));
+				employee.setRoleId(rs.getInt(6));
+				employee.setEmail(rs.getString(7));
+				employeeList.add(employee);
+			}
 			
 		}catch (SQLException e) {
 			e.printStackTrace();
 		}
-		return null;
+		return employeeList;
+	}
+	@Override
+	public List<Employee> searchEmployee(int searchId) {
+			ArrayList<Employee> searchList = new ArrayList<>();
+				try(Connection con =ConnectionFactory.getConnection();
+					PreparedStatement pst = con.prepareStatement("select * from employee where department_id=?"))
+			{
+				pst.setInt(1, searchId);
+				ResultSet rs = pst.executeQuery();
+				while(rs.next())
+				{
+					Employee employee = new Employee();
+					employee.setEmployeeId(rs.getInt(1));
+					employee.setEmployeeName(rs.getString(2));
+					employee.setEmpAdress(rs.getString(3));
+					employee.setMobile(rs.getLong(4));
+					employee.setDeprtmentId(rs.getInt(5));
+					employee.setRoleId(rs.getInt(6));
+					employee.setEmail(rs.getString(7));
+					searchList.add(employee);
+					return searchList;
+				}
+			}
+			catch(SQLException e) {
+				e.printStackTrace();
+			}
+			return null;
+		}
+
+	@Override
+	public Map<String, Integer> getDepartmentwiseCount() {
+		HashMap<String,Integer> reportMap = new HashMap<>();
+		try(Connection con=ConnectionFactory.getConnection();
+				Statement st = con.createStatement())
+		{
+			ResultSet rs = st.executeQuery("select ename count(*) from employee e inner join department d on e.department_id=d.department_id groupby e.");
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return reportMap;
+	}
 	}
 
-}
