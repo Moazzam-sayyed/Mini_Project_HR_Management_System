@@ -16,6 +16,7 @@ public class Client {
 	public static void main(String[] args) {
 		EmployeeDao empDao = new EmployeeDaoImplementation();
 		Scanner sc= new Scanner(System.in);
+		boolean runSwitch = true;
 		
 		UserAuthentication userAu = new UserAuthentication();
 		boolean isAuthenticated = userAu.authentication();
@@ -44,7 +45,9 @@ public class Client {
 			System.out.println(" 					 |	|				|");
 			System.out.println("					 |  6	| Departmentwise Report         |");
 			System.out.println("					 |  	| 				|");
-			System.out.println("					 |  7	| Exit                          |");
+			System.out.println("					 |  7	| Employee By Department Name   |");
+			System.out.println("					 |  	|			   	|");
+			System.out.println("					 |  8	| Logout   			|");
 			System.out.println("					 +--------------------------------------+");
 			System.out.println("					 | Please Enter Your Choice		|");
 
@@ -225,7 +228,7 @@ public class Client {
 						
 						//To Search Employee detail by Department ID
 						
-				case 5: System.out.println("Enter dept Id:");
+				case 5: System.out.println("Enter Employee Id:");
 						int dept_id = sc.nextInt();
 						
 						List<Employee> searchEmpList = empDao.searchEmployee(dept_id);
@@ -247,13 +250,22 @@ public class Client {
 						}
 						break;
 						
-				case 7:System.out.println("Thankyou....");
-						System.out.println("");						
-						System.out.println("");
-						System.out.println("");
+				case 7:System.out.println("Enter Department Name");
+						String dept = sc.next();
+						List<Employee> empBydeptList = empDao.getEmpByDepartmentName(dept);
+						for(Employee empDept:empBydeptList)
+						{
+							System.out.println("+--------------------------------------------------------------------------------------------------------------+");
+							System.out.println("	EmployeeID : "+empDept.getEmployeeId()+" \n	Employee Name : "+empDept.getEmployeeName()+"\n	Address        "+empDept.getEmpAdress()+"\n	Mobile        :"+empDept.getMobile()+" \n	Email ID      : "+empDept.getEmail()+"\n	DepatrmentID   : "+empDept.getDeprtmentId()+" \n	RoleID        : "+empDept.getRoleId()+" ");
+							System.out.println("+--------------------------------------------------------------------------------------------------------------+");
+						}
+						break;
+						
+				case 8: System.out.println("Loged out....");
+						runSwitch = false;
 						break;
 				}
-					}while(true);
+					}while(runSwitch);
 		}
 		else
 			{

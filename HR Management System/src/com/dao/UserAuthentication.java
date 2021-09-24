@@ -23,10 +23,12 @@ public class UserAuthentication{
 			 user.setPassword(rs.getString(3));
 
 		 }
-		 	
-			 System.out.println("Enter User Name");
+		 	System.out.println();
+		 	System.out.println("   +-------Login-------+");
+		 	System.out.println();
+			 System.out.println("   Enter User Name");
 			 String s1 = sc.next();
-			 System.out.println("Enter Password");
+			 System.out.println("   Enter Password");
 			 String s2 = sc.next();
 			 if(s1.equals(user.getUsername()) && s2.equals(user.getPassword()))
 			 {

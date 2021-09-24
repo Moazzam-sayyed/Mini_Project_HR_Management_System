@@ -17,16 +17,17 @@ public interface EmployeeDao {
 	//method to delete data
 	boolean deleteEmployee(int id);
 	
-	//method to feat all employee deatail
+	//method to feat all employee detail
 	public List<Employee> getAllEmployee();
 	
-	//method to serch employee detail
+	//method to search employee detail
 	public List<Employee> searchEmployee(int searchId);
 	
 	//name validation method
 	boolean NameValidation(String name);
 	
-	//Report APIs+
+	//Report APIs
 	public Map<String, Integer> getDepartmentwiseCount();
+	public List<Employee> getEmpByDepartmentName(String department);
 
 }

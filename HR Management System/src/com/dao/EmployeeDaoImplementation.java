@@ -120,7 +120,7 @@ public class EmployeeDaoImplementation implements EmployeeDao{
 	public List<Employee> searchEmployee(int searchId) {			//search
 			ArrayList<Employee> searchList = new ArrayList<>();
 				try(Connection con =ConnectionFactory.getConnection();
-					PreparedStatement pst = con.prepareStatement("select * from employee where department_id=?"))
+					PreparedStatement pst = con.prepareStatement("select * from employee where empid=?"))
 			{
 				pst.setInt(1, searchId);
 				ResultSet rs = pst.executeQuery();
@@ -161,6 +161,35 @@ public class EmployeeDaoImplementation implements EmployeeDao{
 			e.printStackTrace();
 		}
 		return reportMap;
+	}
+
+	@Override
+	public List<Employee> getEmpByDepartmentName(String department) {
+		ArrayList<Employee> empBydept = new ArrayList<>();
+		try(Connection con =ConnectionFactory.getConnection();
+				PreparedStatement pst = con.prepareStatement("select * from employee where department_id=(select department_id from department where department_name=?)"))
+		{
+			pst.setString(1,department);
+			ResultSet rs = pst.executeQuery();
+			while(rs.next())
+			{
+				Employee emp = new Employee();
+				emp.setEmployeeId(rs.getInt(1));
+				emp.setEmployeeName(rs.getString(2));
+				emp.setEmpAdress(rs.getString(3));
+				emp.setMobile(rs.getLong(4));
+				emp.setDeprtmentId(rs.getInt(5));
+				emp.setRoleId(rs.getInt(6));
+				emp.setEmail(rs.getString(7));
+				empBydept.add(emp);
+			}
+			return empBydept;
+		
+		}catch(SQLException e)
+		{
+			e.printStackTrace();
+		}
+		return empBydept;
 	}	
 	
 	}
