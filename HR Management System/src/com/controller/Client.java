@@ -127,6 +127,7 @@ public class Client {
 							System.out.println("Unsuccesfull insertoin!!");
 						break;
 						
+						
 				//To Update Existing Employee
 				case 2: System.out.println("Enter Employye ID To Update:");			
 						int updateEmpId = sc.nextInt();
@@ -201,6 +202,7 @@ public class Client {
 						break;
 						
 						
+						
 				//To delete record from employee table
 				case 3:System.out.println("Enter Employee Id to Delete Employee Detail:");		
 						int deleteEmpId =sc.nextInt();
@@ -210,6 +212,7 @@ public class Client {
 						else
 							System.out.println("unsuccesful deletion.");
 						break;
+						
 						
 						//Display All Employee record
 				case 4:System.out.println("*************************************(Employee Detail)***********************************");
@@ -224,6 +227,7 @@ public class Client {
 						break;
 						
 						
+						
 				//To Search Employee detail by Department ID
 				case 5: System.out.println("Enter  Id:");
 						int dept_id = sc.nextInt();
@@ -235,9 +239,10 @@ public class Client {
 							System.out.println("	EmployeeID : "+searchEmp.getEmployeeId()+" \n	Employee Name : "+searchEmp.getEmployeeName()+"\n	Address        "+searchEmp.getEmpAdress()+"\n	Mobile        :"+searchEmp.getMobile()+" \n	Email ID      : "+searchEmp.getEmail()+"\n	DepatrmentID   : "+searchEmp.getDeprtmentId()+" \n	RoleID        : "+searchEmp.getRoleId()+" ");
 							System.out.println("+--------------------------------------------------------------------------------------------------------------+");
 						}
-						
 						break;
-				
+						
+						
+				//Search API1
 				case 6: Map<String,Integer> reportMap =empDao.getDepartmentwiseCount();
 							System.out.println("******Deprtment wise Employee Report******");
 							System.out.println();
@@ -247,6 +252,7 @@ public class Client {
 							System.out.println("--------------------------------");
 						}
 						break;
+						
 						
 				//API That search Employee detain having same Department Name:		
 				case 7:System.out.println("Enter Department Name");
@@ -259,6 +265,8 @@ public class Client {
 							System.out.println("+--------------------------------------------------------------------------------------------------------------+");
 						}
 						break;
+						
+						
 						
 				case 8: System.out.println("Loged out....");
 						runSwitch = false;
