@@ -10,6 +10,9 @@ public interface EmployeeDao {
 	
 	//method to add data into database
 	boolean addEmployee(Employee employee);
+
+	//name validation method
+	boolean NameValidation(String name);
 	
 	//method to update detail
 	boolean updateEmployee(Employee updateEmployee);
@@ -22,9 +25,6 @@ public interface EmployeeDao {
 	
 	//method to search employee detail
 	public List<Employee> searchEmployee(int searchId);
-	
-	//name validation method
-	boolean NameValidation(String name);
 	
 	//Report APIs
 	public Map<String, Integer> getDepartmentwiseCount();

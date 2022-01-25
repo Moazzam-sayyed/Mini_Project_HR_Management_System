@@ -264,9 +264,7 @@ public class Client {
 							System.out.println("	EmployeeID : "+empDept.getEmployeeId()+" \n	Employee Name : "+empDept.getEmployeeName()+"\n	Address        "+empDept.getEmpAdress()+"\n	Mobile        :"+empDept.getMobile()+" \n	Email ID      : "+empDept.getEmail()+"\n	DepatrmentID   : "+empDept.getDeprtmentId()+" \n	RoleID        : "+empDept.getRoleId()+" ");
 							System.out.println("+--------------------------------------------------------------------------------------------------------------+");
 						}
-						break;
-						
-						
+						break;	
 						
 				case 8: System.out.println("Loged out....");
 						runSwitch = false;
@@ -282,5 +280,4 @@ public class Client {
 			}
 				
 		}
-		
 }
